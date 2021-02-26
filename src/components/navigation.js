@@ -6,9 +6,9 @@ const Navigation = () => {
     <header>
       <nav className ='main-nav'>
         <ul>
-          <li><Navlink to='/stars'>Stars</Navlink></li>
+          <li><Navlink to='/oceans'>Oceans</Navlink></li>
           <li><Navlink to='/moutains'>Moutains</Navlink></li>
-          <li><Navlink to='/forests'>Forests</Navlink></li>
+          <li><Navlink to='/campfires'>Campfires</Navlink></li>
         </ul>
       </nav>
     </header>

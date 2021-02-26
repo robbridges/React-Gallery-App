@@ -1,5 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
+import React, {Component} from 'react';
+import axios from 'axios';
+import {Route, Redirect, Switch} from 'react-router-dom';
+import apiKey from './config';
+
+import Nav from './components/Navigation';
+import NoResults from './components/NoResults';
+import NotFound from './components/PageNotFound';
+
+
 
 function App() {
   return (
@@ -19,6 +29,7 @@ function App() {
         </a>
       </header>
     </div>
+    
   );
 }
 

@@ -1,34 +1,53 @@
 import logo from './logo.svg';
-import './App.css';
+import './css/index.css';
 import React, {Component} from 'react';
 import {Route, BrowserRouter, Switch} from 'react-router-dom';
 import axios from 'axios';
 import apiKey from './config';
+import SearchBar from './components/SearchBar';
+import Navigation from './components/Navigation';
+
+
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      photos:[]
+      
+
+    };
+  } 
+getPhotos = (query) => {
+  axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
+  .then(response => {
+    this.setState({
+      photos: response.data.photos.photo,
+      query:query
+    })
+  })
+  .catch (error => {
+    console.log('Error with the api request', error)
+  });
+}
 
 
 
-
-
-function App() {
+  render() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+      <SearchBar onSearch={this.performSearch}/>
+      <Navigation />
+      <Route path={`/oceans`}
+        />
+      </div>
+    </BrowserRouter>
+
     
   );
+  }
+  
 }
+
 
 export default App;

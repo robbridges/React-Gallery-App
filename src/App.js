@@ -39,7 +39,9 @@ getPhotos = (query) => {
       <SearchBar onSearch={this.performSearch}/>
       <Navigation />
       <Route path={`/oceans`}
-        />
+        onSearch={this.getPhotos}
+        photos={this.state.photos}  
+        query={`ocean`} />
       </div>
     </BrowserRouter>
 

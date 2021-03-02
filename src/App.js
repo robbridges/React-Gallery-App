@@ -50,9 +50,9 @@ getPhotos = (query) => {
   return (
     <BrowserRouter>
       <div className="App">
-      <SearchBar onSearch={this.performSearch}/>
-      <Navigation />
-      <PhotoContainer data={this.state.photos} />
+        <SearchBar onSearch={this.performSearch}/>
+        <Navigation />
+        <PhotoContainer data={this.state.photos} />
       </div>
     </BrowserRouter>
 

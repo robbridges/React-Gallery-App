@@ -15,6 +15,7 @@ const PhotoContainer = (props) => {
   
   return (
     <div className="photo-container">
+      <h2> Results </h2>
       <ul>
         {photos}
       </ul>

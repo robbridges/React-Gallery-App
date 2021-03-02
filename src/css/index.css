@@ -70,10 +70,13 @@ input {
   justify-content: space-between;
   -ms-align-items: flex-start;
   align-items: flex-start;
+  margin-right : 120px;
+  margin-left : 120px;
 }
 
 .photo-container ul li {
-  width: 220px;
+  /* width initially 220 */
+  width: 400px;
   height: 165px;
   overflow: hidden;
   margin-bottom: 15px;

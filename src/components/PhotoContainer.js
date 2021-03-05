@@ -1,21 +1,28 @@
 import React from 'react';
 import Photo from './Photo';
+import NoResults from './NoResults';
 
 const PhotoContainer = (props) => {
-  let results = props.data
+  let results = props.data;
+  let photos;
+  if (results.length > 0) {
+    photos = results.map( photo => 
+      <Photo 
+        server={photo.server}
+        secret={photo.secret}
+        id={photo.id}
+        key={photo.id}
+      /> 
+    );
+  } else {
+    photos = <NoResults />
+  }
+
   
-  let photos = results.map( photo => 
-    <Photo 
-      server={photo.server}
-      secret={photo.secret}
-      id={photo.id}
-      key={photo.id}
-    /> 
-  );
+  
   
   return (
     <div className="photo-container">
-      <h2> Results </h2>
       <ul>
         {photos}
       </ul>

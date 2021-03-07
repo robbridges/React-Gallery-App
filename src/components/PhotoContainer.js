@@ -28,6 +28,10 @@ const PhotoContainer = (props) => {
     photos = <NoResults />
   }
 
+/*
+Discovered a major in the app where the app reset the state upon page refresh or browser navigation, I had to import withRouter again to get the url path, then take the substring
+of that for the keyboard to perform the onsearch again before rendering the photots. It works!
+*/
 
   if (url.includes("/search")) {
     let keyword = url.substring(8);

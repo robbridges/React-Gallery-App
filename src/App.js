@@ -32,7 +32,7 @@ What the app does when it isinitally mounted, we are changing our changeing the 
 
 */
 componentDidMount() {
-  this.getPhotos();
+  
 
   axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=ocean&per_page=24&format=json&nojsoncallback=1`)
     .then(res => {
@@ -118,7 +118,7 @@ Finally, if the user enters a route that is progammically included they correct 
         <SearchBar onSearch={this.getPhotos} reconfigureLoading={this.reconfigureLoading}/>
         <Navigation />
         <Switch>
-          <Route exact path ="/" render = {() => <PhotoContainer data={this.state.photos} />} />
+          <Route exact path ="/" render = {() => <PhotoContainer data={this.state.moutainPhotos} query='Moutains'/>} />
           <Route path ="/search" render ={ () => <PhotoContainer data ={this.state.photos} onSearch={this.getPhotos} query={this.state.query} /> } />
           <Route exact path="/oceans" render={ () => <PhotoContainer data={this.state.oceanPhotos} query='Oceans' /> }/>
           <Route exact path="/moutains" render={ () => <PhotoContainer data={this.state.moutainPhotos} query='Moutains' /> }/>

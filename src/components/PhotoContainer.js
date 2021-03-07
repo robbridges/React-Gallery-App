@@ -1,6 +1,7 @@
 import React from 'react';
 import Photo from './Photo';
 import NoResults from './NoResults';
+import { withRouter } from 'react-router'
 
 /*
 Our photo container, the main part of the app that actually shows the pictures, it passes into the photo component informatio needed for the endpoint of the flicka API 
@@ -11,6 +12,7 @@ const PhotoContainer = (props) => {
   let results = props.data;
   let photos;
   let query = props.query;
+  let url = props.history.location.pathname;
 
   if (results.length > 0) {
     photos = results.map( photo => 
@@ -26,7 +28,13 @@ const PhotoContainer = (props) => {
     photos = <NoResults />
   }
 
-  
+
+  if (url.includes("/search")) {
+    let keyword = url.substring(8);
+    if (keyword !== query) {
+       props.onSearch(keyword);
+    }
+  }
   
   
   return (
@@ -39,4 +47,4 @@ const PhotoContainer = (props) => {
   );
 }
 
-export default PhotoContainer;
+export default withRouter(PhotoContainer);

@@ -18,8 +18,8 @@ class App extends Component {
       photos: [],
       oceanPhotos: [],
       moutainPhotos: [],
-      campfirePhotos: []
-
+      campfirePhotos: [],
+      isLoading: true
     };
   }
   
@@ -29,7 +29,8 @@ componentDidMount() {
   axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=ocean&per_page=24&format=json&nojsoncallback=1`)
     .then(res => {
       this.setState({
-        oceanPhotos: res.data.photos.photo
+        oceanPhotos: res.data.photos.photo,
+        isLoading: false
       });
     })
     .catch(err => {
@@ -39,7 +40,8 @@ componentDidMount() {
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=moutain&per_page=24&format=json&nojsoncallback=1`)
     .then(res => {
       this.setState({
-        moutainPhotos: res.data.photos.photo
+        moutainPhotos: res.data.photos.photo,
+        isLoading: false,
       });
     })
     .catch(err => {
@@ -49,7 +51,8 @@ componentDidMount() {
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=campfire&per_page=24&format=json&nojsoncallback=1`)
     .then(res => {
       this.setState({
-        campfirePhotos: res.data.photos.photo
+        campfirePhotos: res.data.photos.photo,
+        isLoading: false
       });
     })
     .catch(err => {
@@ -60,22 +63,29 @@ componentDidMount() {
 }
 
 
-getPhotos = (query = 'moutains') => {
+getPhotos = (query = 'moutain') => {
   axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
   .then(response => {
     this.setState({
       photos: response.data.photos.photo,
-      query: query
+      query: query,
+      isLoading: false
     });
   })
   .catch (error => {
     console.log('Error with the api request', error)
   });
+  
 }
 
 
 
   render() {
+  if (this.state.isLoading) {
+    return (
+      <h2> loading..</h2>
+    )
+  } else {
   return (
     <BrowserRouter>
       <div className="App">
@@ -83,7 +93,7 @@ getPhotos = (query = 'moutains') => {
         <Navigation />
         <Switch>
           <Route exact path ="/" render = {() => <PhotoContainer data={this.state.photos} />} />
-          <Route path ="/search" render ={ () => <PhotoContainer data ={this.state.photos} onSearch={this.getPhotos} /> } />
+          <Route path ="/search" render ={ () => <PhotoContainer data ={this.state.photos} onSearch={this.getPhotos} query={this.state.query} /> } />
           <Route exact path="/oceans" render={ () => <PhotoContainer data={this.state.oceanPhotos} /> }/>
           <Route exact path="/moutains" render={ () => <PhotoContainer data={this.state.moutainPhotos}  /> }/>
           <Route exact path="/campfires" render={ () => <PhotoContainer data={this.state.campfirePhotos} /> }/>
@@ -95,7 +105,7 @@ getPhotos = (query = 'moutains') => {
     
   );
   }
-  
+}
 }
 
 

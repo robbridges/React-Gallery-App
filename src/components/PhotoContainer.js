@@ -1,10 +1,12 @@
 import React from 'react';
 import Photo from './Photo';
 import NoResults from './NoResults';
+import { withRouter } from "react-router";
 
 const PhotoContainer = (props) => {
   let results = props.data;
   let photos;
+
   if (results.length > 0) {
     photos = results.map( photo => 
       <Photo 
@@ -15,6 +17,7 @@ const PhotoContainer = (props) => {
       /> 
     );
   } else {
+    
     photos = <NoResults />
   }
 
@@ -30,4 +33,4 @@ const PhotoContainer = (props) => {
   );
 }
 
-export default PhotoContainer;
+export default withRouter(PhotoContainer);

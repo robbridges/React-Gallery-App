@@ -40,7 +40,9 @@ of that for the keyboard to perform the onsearch again before rendering the phot
     }
   }
   
-  
+/*
+Displaying the photos
+*/  
   return (
     <div className="photo-container">
     <h3>Results for {query}:</h3>

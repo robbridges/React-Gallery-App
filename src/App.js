@@ -4,6 +4,11 @@ import React, {Component} from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import axios from 'axios';
 import apiKey from './config';
+
+/*
+View component rendering 
+*/
+
 import SearchBar from './components/SearchBar';
 import Navigation from './components/Navigation';
 import PhotoContainer from './components/PhotoContainer';

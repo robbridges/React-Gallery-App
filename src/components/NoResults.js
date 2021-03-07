@@ -1,5 +1,7 @@
 import React from 'react';
-
+/*
+Very simple no results page offers the user to try again if no results are met. 
+*/
 const NoResults = () => {
   return (
     <li className="not-found">

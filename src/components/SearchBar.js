@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import { withRouter } from "react-router";
 
+/*
+This is where all of our search logic is implemented, though it shows a very basic bar, this is the brains of the operation.
+*/
 
 class SearchBar extends Component {
 
@@ -11,9 +14,13 @@ class SearchBar extends Component {
   onSearchChange = e => {
     this.setState({searchText: e.target.value});
   }
-
+/*
+Out search feature, everytime the user submits, we reconfigure the state of the app loading, we run our on search logic and we redirect the user to the correct search/query
+path but using the handy withRouter that gives us access to the history prop.
+*/
   handleSubmit = e => {
     e.preventDefault();
+    this.props.reconfigureLoading();
     this.props.onSearch(this.query.value);
     this.props.history.push(`/search/${this.query.value}`)
     e.currentTarget.reset();

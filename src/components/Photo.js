@@ -1,4 +1,7 @@
 import React from 'react';
+/*
+Photo page, does nothing more than displays 
+*/
 const Photo = (props) => {
   return(
       <li>

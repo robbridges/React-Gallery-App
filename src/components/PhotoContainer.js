@@ -34,16 +34,16 @@ of that for the keyboard to perform the onsearch again before rendering the phot
 */
 
   if (url.includes("/search")) {
-    let keyword = url.substring(8);
-    if (keyword !== query) {
-       props.onSearch(keyword);
+    let searchTerm = url.substring(8);
+    if (searchTerm !== query) {
+       props.onSearch(searchTerm);
     }
   }
   
   
   return (
     <div className="photo-container">
-    <h3>Results for {query}</h3>
+    <h3>Results for {query}:</h3>
       <ul>
         {photos}
       </ul>

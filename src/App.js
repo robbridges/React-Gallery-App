@@ -73,7 +73,7 @@ componentDidMount() {
 /*
 Main search feature of the app, sets up the query and this function is wired into our search bar
 */
-getPhotos = (query = 'moutain') => {
+getPhotos = (query = 'Moutains') => {
   axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
   .then(response => {
     this.setState({
@@ -120,9 +120,9 @@ Finally, if the user enters a route that is progammically included they correct 
         <Switch>
           <Route exact path ="/" render = {() => <PhotoContainer data={this.state.photos} />} />
           <Route path ="/search" render ={ () => <PhotoContainer data ={this.state.photos} onSearch={this.getPhotos} query={this.state.query} /> } />
-          <Route exact path="/oceans" render={ () => <PhotoContainer data={this.state.oceanPhotos} /> }/>
-          <Route exact path="/moutains" render={ () => <PhotoContainer data={this.state.moutainPhotos}  /> }/>
-          <Route exact path="/campfires" render={ () => <PhotoContainer data={this.state.campfirePhotos} /> }/>
+          <Route exact path="/oceans" render={ () => <PhotoContainer data={this.state.oceanPhotos} query='Oceans' /> }/>
+          <Route exact path="/moutains" render={ () => <PhotoContainer data={this.state.moutainPhotos} query='Moutains' /> }/>
+          <Route exact path="/campfires" render={ () => <PhotoContainer data={this.state.campfirePhotos} query='Campfires'/> }/>
           <Route component={PageNotFound}/>
         </Switch>
       </div>

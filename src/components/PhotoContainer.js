@@ -10,6 +10,7 @@ This is also the point where we show no show the user that their request matched
 const PhotoContainer = (props) => {
   let results = props.data;
   let photos;
+  let query = props.query;
 
   if (results.length > 0) {
     photos = results.map( photo => 
@@ -30,6 +31,7 @@ const PhotoContainer = (props) => {
   
   return (
     <div className="photo-container">
+    <h3>Results for {query}</h3>
       <ul>
         {photos}
       </ul>

@@ -3,6 +3,8 @@ import { NavLink } from 'react-router-dom';
 /*
 Very simple part of our app, navlinks that direct the user to a different part of our app.
 */
+
+//test comment
 const Navigation = () => {
   return (
     <header>

@@ -3,7 +3,7 @@ import {NavLink} from 'react-router-dom';
 /*
 Simple 404 page that if a route is requested that is not loacted it tells the user about the error and navigates them back to the home route of the app
 */
-// test comment
+
 const PageNotFound = () => {
   return(
     <div>
